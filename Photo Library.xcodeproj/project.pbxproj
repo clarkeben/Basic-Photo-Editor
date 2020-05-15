@@ -17,6 +17,7 @@
 		149DC75B246B6C5A00803063 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DC75A246B6C5A00803063 /* ImageTableViewCell.swift */; };
 		149DC75E246B6D0F00803063 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DC75D246B6D0F00803063 /* ViewExtensions.swift */; };
 		14E32B9D246CA79B00B14D84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E32B9C246CA79B00B14D84 /* Constants.swift */; };
+		14E403C5246DFDC1000FF765 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E403C4246DFDC1000FF765 /* Photo.swift */; };
 		14EE6F13246B6E4C002B2FA0 /* default-img2 in Resources */ = {isa = PBXBuildFile; fileRef = 14EE6F11246B6E4C002B2FA0 /* default-img2 */; };
 		14EE6F14246B6E4C002B2FA0 /* default-img1 in Resources */ = {isa = PBXBuildFile; fileRef = 14EE6F12246B6E4C002B2FA0 /* default-img1 */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		149DC75A246B6C5A00803063 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		149DC75D246B6D0F00803063 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		14E32B9C246CA79B00B14D84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		14E403C4246DFDC1000FF765 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		14EE6F11246B6E4C002B2FA0 /* default-img2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "default-img2"; sourceTree = "<group>"; };
 		14EE6F12246B6E4C002B2FA0 /* default-img1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "default-img1"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 		149DC759246B663F00803063 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				14E403C4246DFDC1000FF765 /* Photo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E403C5246DFDC1000FF765 /* Photo.swift in Sources */,
 				149DC740246B652800803063 /* AppDelegate.swift in Sources */,
 				1471B308246C20270009C53F /* AnimationViewExtensions.swift in Sources */,
 				149DC75B246B6C5A00803063 /* ImageTableViewCell.swift in Sources */,

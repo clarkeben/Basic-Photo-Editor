@@ -10,6 +10,7 @@ import UIKit
 
 class WelcomeTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    let photos = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,9 +70,26 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        <#code#>
+        guard let image = info[.editedImage] as? UIImage else { return }
+        
+        // Create unique identifier for image, retreview documents director loc. Write image as Data object and save
+        let imageName = UUID().uuidString
+        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
+        
+        if let jpegData = image.jpegData(compressionQuality: 0.8) {
+            try? jpegData.write(to: imagePath)
+        }
+        
+        dismiss(animated: true)
+        
     }
     
-
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    
+    
 }
 
