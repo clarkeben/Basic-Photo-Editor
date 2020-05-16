@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Photo {
+struct Photo: Codable {
     
     public var name: String
     public var image: String

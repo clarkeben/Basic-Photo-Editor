@@ -32,3 +32,16 @@ extension UITableView {
         }
     }
 }
+
+extension UITableViewCell {
+    
+    func fadeInCell() {
+        self.alpha = 0
+        
+        UIView.animate(withDuration: 1.0) {
+            self.alpha = 1.0
+        }
+    }
+    
+    
+}

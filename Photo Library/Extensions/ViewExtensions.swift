@@ -8,10 +8,32 @@
 
 import UIKit
 
+//MARK: - ViewController
+
+extension UIViewController {
+    
+    // Disclosure Indicator for tableview Cells
+    func addDiscolsureIndicatorCell() -> UIView {
+        let accessoryView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: 50))
+        let accessoryViewImage = UIImageView(image: UIImage(named: K.images.chevron))
+        accessoryViewImage.center = CGPoint(x: 12, y: 25)
+        accessoryViewImage.image = accessoryViewImage.image?.withRenderingMode(.alwaysTemplate)
+        accessoryViewImage.tintColor = UIColor(named: K.colours.tintColour)
+        accessoryView.addSubview(accessoryViewImage)
+        return accessoryView
+    }
+    
+}
+
+//MARK: - UIView
+
+extension UIView {
+}
+
+
 //MARK: - UItableViewExtension
 
 extension UITableView {
-    
 }
 
 
@@ -31,5 +53,4 @@ extension UITableViewCell {
         self.layer.rasterizationScale = UIScreen.main.scale
         
     }
-    
 }

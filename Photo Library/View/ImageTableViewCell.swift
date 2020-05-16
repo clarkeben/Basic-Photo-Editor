@@ -16,17 +16,11 @@ class ImageTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         formatImg()
-        
-        // Fade in images slightly 
-        cellImg.alpha = 0
-        UIView.animate(withDuration: 1.0) {
-            [weak self]  in
-            self?.cellImg.alpha = 1.0
-        }
     }
     
     func formatImg() {
         cellImg.layer.cornerRadius = 8
+        // Further IMG formating
     }
     
 }
