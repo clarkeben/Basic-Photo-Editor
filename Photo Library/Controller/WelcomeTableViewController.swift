@@ -11,6 +11,7 @@ import UIKit
 class WelcomeTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var photos = [Photo]()
+    var currentIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,7 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
         
         cell.cellImg.image = UIImage(contentsOfFile: path.path)
         cell.txtLabel.text = photo.name
+        cell.dateLabel.text = photo.date
         
         cell.accessoryView = addDiscolsureIndicatorCell()
         
@@ -67,6 +69,28 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        currentIndex = indexPath.row
+        performSegue(withIdentifier: K.segueToDetail, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //if segue.identifier == K.segueToDetail { }
+        guard let detailVC = segue.destination as? DetailViewController else { return }
+        
+        if let index = currentIndex {
+           detailVC.currentPhoto = photos[index]
+            print(photos[index])
+        }
+    }
+    
+    func todaysDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "dd.MM.yyyy"
+        let result = formatter.string(from: date)
+        
+        return result
     }
     
     
@@ -108,7 +132,7 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
             try? jpegData.write(to: imagePath)
         }
         
-        let photo = Photo(name: "Photo", image: imageName)
+        let photo = Photo(name: "Photo", image: imageName, date: todaysDate())
         photos.append(photo)
         save()
         tableView.reloadData()
@@ -116,7 +140,7 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
         dismiss(animated: true)
     }
     
-
+    
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1471B308246C20270009C53F /* AnimationViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471B307246C20270009C53F /* AnimationViewExtensions.swift */; };
+		1477D1C0246F77160043F85B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477D1BF246F77160043F85B /* DetailViewController.swift */; };
 		149DC740246B652800803063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DC73F246B652800803063 /* AppDelegate.swift */; };
 		149DC742246B652800803063 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DC741246B652800803063 /* SceneDelegate.swift */; };
 		149DC747246B652800803063 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149DC745246B652800803063 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		1471B307246C20270009C53F /* AnimationViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationViewExtensions.swift; sourceTree = "<group>"; };
+		1477D1BF246F77160043F85B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		149DC73C246B652800803063 /* Photo Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Library.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		149DC73F246B652800803063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		149DC741246B652800803063 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				149DC753246B65EF00803063 /* WelcomeTableViewController.swift */,
+				1477D1BF246F77160043F85B /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1477D1C0246F77160043F85B /* DetailViewController.swift in Sources */,
 				14E403C5246DFDC1000FF765 /* Photo.swift in Sources */,
 				149DC740246B652800803063 /* AppDelegate.swift in Sources */,
 				1471B308246C20270009C53F /* AnimationViewExtensions.swift in Sources */,

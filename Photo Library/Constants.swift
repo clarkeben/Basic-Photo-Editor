@@ -12,6 +12,9 @@ struct K {
     
     static let title = "Photo Library 📸"
     
+    // Segues
+    static let segueToDetail = "goToDetailVC"
+    
     struct colours {
         static let tintColour = "TintColour"
     }

@@ -12,6 +12,8 @@ class ImageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var txtLabel: UILabel!
     @IBOutlet weak var cellImg: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()

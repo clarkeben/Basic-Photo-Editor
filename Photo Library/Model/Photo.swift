@@ -12,10 +12,12 @@ struct Photo: Codable {
     
     public var name: String
     public var image: String
+    public var date: String
     
-    init(name: String, image: String) {
+    init(name: String, image: String, date: String) {
         self.name = name
         self.image = image
+        self.date = date
     }
     
 }
