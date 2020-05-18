@@ -20,8 +20,13 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addNewPhotoCamera))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPhotoRoll))
         
+//        tableView.reloadWithBounceAnimation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadData()
-        tableView.reloadWithBounceAnimation()
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -78,8 +83,7 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
         guard let detailVC = segue.destination as? DetailViewController else { return }
         
         if let index = currentIndex {
-           detailVC.currentPhoto = photos[index]
-            print(photos[index])
+            detailVC.selectedPhotoIndex = index
         }
     }
     

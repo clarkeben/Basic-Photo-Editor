@@ -91,17 +91,17 @@
                                     <constraint firstAttribute="height" constant="310" id="4DH-ih-si9"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="159" translatesAutoresizingMaskIntoConstraints="NO" id="4Em-pv-NDa">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="151" translatesAutoresizingMaskIntoConstraints="NO" id="4Em-pv-NDa">
                                 <rect key="frame" x="20" y="482" width="374" height="33"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo of dogs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9t-lK-VaD">
-                                        <rect key="frame" x="0.0" y="0.0" width="107.5" height="33"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Even longer text label test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9t-lK-VaD">
+                                        <rect key="frame" x="0.0" y="0.0" width="193" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5a-qz-Eza">
-                                        <rect key="frame" x="266.5" y="0.0" width="107.5" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5a-qz-Eza">
+                                        <rect key="frame" x="344" y="0.0" width="30" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Edit">
                                             <color key="titleColor" name="TintColour"/>
@@ -111,6 +111,10 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="B5a-qz-Eza" firstAttribute="top" secondItem="4Em-pv-NDa" secondAttribute="top" id="Ryb-MC-ueP"/>
+                                    <constraint firstAttribute="trailing" secondItem="B5a-qz-Eza" secondAttribute="trailing" id="vjG-ty-VEf"/>
+                                </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.12.2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8d-dw-0A6">
                                 <rect key="frame" x="20" y="529" width="374" height="20.5"/>
