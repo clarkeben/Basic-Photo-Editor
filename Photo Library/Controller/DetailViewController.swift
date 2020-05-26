@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreImage
 
 class DetailViewController: UIViewController {
     
@@ -22,6 +23,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var intensitySlider: UISlider!
     @IBOutlet weak var changeFilterBtn: UIButton!
     
+    var currentImage: UIImage!
+    var context: CIContext!
+    var currentFilter: CIFilter!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,10 +37,19 @@ class DetailViewController: UIViewController {
         guard let currentPhoto = photo else { return }
         
         let path = getDocumentsDirectory().appendingPathComponent(currentPhoto.image)
+        currentImage = UIImage(contentsOfFile: path.path)
         
-        imageView.image = UIImage(contentsOfFile: path.path)
+        imageView.image = currentImage
         nameLabel.text = currentPhoto.name
         dateLabel.text = currentPhoto.date
+        
+        context = CIContext()
+        currentFilter = CIFilter(name: "CIVignette")
+        
+        let beginImage = CIImage(image: currentImage)
+        currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+        
+        applyProcessing()
         
         formatUI()
         
@@ -97,15 +111,82 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func intensityChanged(_ sender: Any) {
+        applyProcessing()
     }
     
-    @IBAction func changeFilter(_ sender: Any) {
+    @IBAction func changeFilter(_ sender: UIButton) {
+        let ac = UIAlertController(title: "Choose filter", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "CIBumpDistortion", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIGaussianBlur", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIPixellate", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CISepiaTone", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CITwirlDistortion", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIUnsharpMask", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIVignette", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIPhotoEffectNoir", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        if let popoverController = ac.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
+        
+        present(ac, animated: true)
+    }
+    
+    func setFilter(action: UIAlertAction) {
+        guard currentImage != nil else { return }
+        guard let actionTitle = action.title else { return }
+        
+        currentFilter = CIFilter(name: actionTitle)
+        changeFilterBtn.setTitle(actionTitle, for: .normal)
+        
+        let beginImage = CIImage(image: currentImage)
+        currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+        
+        applyProcessing()
     }
     
     @IBAction func saveToLibrary(_ sender: Any) {
+        if let image = imageView.image {
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        } else {
+            showAC(messageTitle: "No image selected", message: "Please load an image before trying to save!")
+        }
+    }
+    
+    func applyProcessing() {
+        let inputKeys = currentFilter.inputKeys
+        
+        if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(intensitySlider.value, forKey: kCIInputIntensityKey) }
+        if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(intensitySlider.value * 200, forKey: kCIInputRadiusKey) }
+        if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(intensitySlider.value * 10, forKey: kCIInputScaleKey) }
+        if inputKeys.contains(kCIInputCenterKey) { currentFilter.setValue(CIVector(x: currentImage.size.width / 2, y: currentImage.size.height / 2), forKeyPath: kCIInputCenterKey) }
+        
+        // Core Image manipulation
+        guard let outputImage = currentFilter.outputImage else { return }
+        
+        if let cgimage = context.createCGImage(outputImage, from: outputImage.extent)  {
+            let processedImage = UIImage(cgImage: cgimage)
+            imageView.image = processedImage
+        }
     }
     
     
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            showAC(messageTitle: "Save error", message: error.localizedDescription)
+        } else {
+            showAC(messageTitle: "Saved ✅", message: "Your altered image has been saved to your photos.")
+        }
+    }
+    
+    func showAC(messageTitle: String, message: String) {
+        let ac = UIAlertController(title: messageTitle, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        ac.view.tintColor = UIColor(named: K.colours.tintColour)
+        present(ac, animated: true)
+    }
     
     func formatUI() {
         doneButton.roundedBtn()

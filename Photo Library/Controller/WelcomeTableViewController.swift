@@ -115,6 +115,7 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
     func showErrorAlert(title: String, message: String) {
         let ac = UIAlertController(title: "\(title) ⚠️", message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        ac.view.tintColor = UIColor(named: K.colours.tintColour)
         present(ac, animated: true)
     }
     

@@ -136,9 +136,9 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6A-W7-fZw">
-                                <rect key="frame" x="20" y="604" width="119" height="51"/>
+                                <rect key="frame" x="20" y="604" width="160" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="119" id="O7I-hv-TLk"/>
+                                    <constraint firstAttribute="width" constant="160" id="O7I-hv-TLk"/>
                                     <constraint firstAttribute="height" constant="51" id="i7u-W0-pp0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -148,12 +148,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeB-GZ-oXS">
-                                <rect key="frame" x="288" y="604" width="106" height="51"/>
+                                <rect key="frame" x="271" y="604" width="123" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="HEd-dh-oCQ"/>
+                                    <constraint firstAttribute="width" constant="123" id="HEd-dh-oCQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Save"/>
+                                <state key="normal" title="Save To Library"/>
                                 <connections>
                                     <action selector="saveToLibrary:" destination="caS-B3-4vB" eventType="touchUpInside" id="ZlT-Ip-mJl"/>
                                 </connections>
