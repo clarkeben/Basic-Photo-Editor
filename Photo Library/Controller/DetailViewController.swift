@@ -19,6 +19,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var intensitySlider: UISlider!
+    @IBOutlet weak var changeFilterBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +95,17 @@ class DetailViewController: UIViewController {
         nameLabel.text = name
         save()
     }
+    
+    @IBAction func intensityChanged(_ sender: Any) {
+    }
+    
+    @IBAction func changeFilter(_ sender: Any) {
+    }
+    
+    @IBAction func saveToLibrary(_ sender: Any) {
+    }
+    
+    
     
     func formatUI() {
         doneButton.roundedBtn()

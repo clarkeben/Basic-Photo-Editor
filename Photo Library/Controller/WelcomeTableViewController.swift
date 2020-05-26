@@ -136,7 +136,7 @@ class WelcomeTableViewController: UITableViewController, UIImagePickerController
             try? jpegData.write(to: imagePath)
         }
         
-        let photo = Photo(name: "Photo", image: imageName, date: todaysDate())
+        let photo = Photo(name: "Photo \(photos.count)", image: imageName, date: todaysDate())
         photos.append(photo)
         save()
         tableView.reloadData()
