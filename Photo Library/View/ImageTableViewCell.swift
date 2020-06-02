@@ -22,7 +22,6 @@ class ImageTableViewCell: UITableViewCell {
     
     func formatImg() {
         cellImg.layer.cornerRadius = 8
-        // Further IMG formating
     }
     
 }

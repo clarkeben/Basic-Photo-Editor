@@ -148,12 +148,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeB-GZ-oXS">
-                                <rect key="frame" x="271" y="604" width="123" height="51"/>
+                                <rect key="frame" x="237" y="604" width="157" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="123" id="HEd-dh-oCQ"/>
+                                    <constraint firstAttribute="width" constant="157" id="HEd-dh-oCQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Save To Library"/>
+                                <state key="normal" title="Save To Camera Roll"/>
                                 <connections>
                                     <action selector="saveToLibrary:" destination="caS-B3-4vB" eventType="touchUpInside" id="ZlT-Ip-mJl"/>
                                 </connections>
@@ -165,11 +165,11 @@
                                     <constraint firstAttribute="height" constant="34" id="QJw-px-6Kf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Done">
+                                <state key="normal" title="Cancel">
                                     <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="donePressed:" destination="caS-B3-4vB" eventType="touchUpInside" id="jMT-tK-H7e"/>
+                                    <action selector="cancelBtnPressed:" destination="caS-B3-4vB" eventType="touchUpInside" id="jMT-tK-H7e"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -204,9 +204,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="wpu-2s-2fQ"/>
                     <connections>
+                        <outlet property="cancelButton" destination="tLA-5F-Idw" id="zuW-xt-bqy"/>
                         <outlet property="changeFilterBtn" destination="z6A-W7-fZw" id="Wqw-Dn-0lj"/>
                         <outlet property="dateLabel" destination="J8d-dw-0A6" id="wdo-E5-owP"/>
-                        <outlet property="doneButton" destination="tLA-5F-Idw" id="zuW-xt-bqy"/>
                         <outlet property="imageView" destination="8JP-nU-ACQ" id="B6f-Tw-hrW"/>
                         <outlet property="intensitySlider" destination="aSd-WY-d99" id="y04-hJ-pOO"/>
                         <outlet property="nameLabel" destination="v9t-lK-VaD" id="R1l-tN-5PM"/>

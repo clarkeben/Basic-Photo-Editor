@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var intensitySlider: UISlider!
     @IBOutlet weak var changeFilterBtn: UIButton!
     
@@ -30,19 +30,15 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Photo Editor 🎨"
+        navigationItem.backBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveImgToApp))
+        
         loadData()
         
-        guard let index = selectedPhotoIndex else { return }
-        photo = photos[index]
-        guard let currentPhoto = photo else { return }
+        formatUI()
         
-        let path = getDocumentsDirectory().appendingPathComponent(currentPhoto.image)
-        currentImage = UIImage(contentsOfFile: path.path)
-        
-        imageView.image = currentImage
-        nameLabel.text = currentPhoto.name
-        dateLabel.text = currentPhoto.date
-        
+        // Core Img Manipulation
         context = CIContext()
         currentFilter = CIFilter(name: "CIVignette")
         
@@ -50,9 +46,6 @@ class DetailViewController: UIViewController {
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
         
         applyProcessing()
-        
-        formatUI()
-        
     }
     
     @IBAction func editPressed(_ sender: Any) {
@@ -72,7 +65,20 @@ class DetailViewController: UIViewController {
         
     }
     
-    @IBAction func donePressed(_ sender: Any) {
+    @objc func saveImgToApp() {
+        guard let index = selectedPhotoIndex else { return }
+        guard let image = imageView.image else { return }
+        let imageName = photos[index].image
+        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
+        
+        if let jpegData = image.jpegData(compressionQuality: 1.0) {
+            try? jpegData.write(to: imagePath)
+        }
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func cancelBtnPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
@@ -103,7 +109,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func editPhotoName(name: String) {
+    private func editPhotoName(name: String) {
         guard let index = selectedPhotoIndex else { return }
         photos[index].name = name
         nameLabel.text = name
@@ -126,15 +132,10 @@ class DetailViewController: UIViewController {
         ac.addAction(UIAlertAction(title: "CIPhotoEffectNoir", style: .default, handler: setFilter))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
-        if let popoverController = ac.popoverPresentationController {
-            popoverController.sourceView = sender
-            popoverController.sourceRect = sender.bounds
-        }
-        
         present(ac, animated: true)
     }
     
-    func setFilter(action: UIAlertAction) {
+    private func setFilter(action: UIAlertAction) {
         guard currentImage != nil else { return }
         guard let actionTitle = action.title else { return }
         
@@ -155,7 +156,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func applyProcessing() {
+    private func applyProcessing() {
         let inputKeys = currentFilter.inputKeys
         
         if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(intensitySlider.value, forKey: kCIInputIntensityKey) }
@@ -181,24 +182,36 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func showAC(messageTitle: String, message: String) {
+    private func showAC(messageTitle: String, message: String) {
         let ac = UIAlertController(title: messageTitle, message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         ac.view.tintColor = UIColor(named: K.colours.tintColour)
         present(ac, animated: true)
     }
     
-    func formatUI() {
-        doneButton.roundedBtn()
+    private func formatUI() {
+        cancelButton.roundedBtn()
         imageView.roundedImg()
         
-        doneButton.alpha = 0
+        cancelButton.alpha = 0
         imageView.alpha = 0
         
         UIView.animate(withDuration: 1.0) {
-            self.doneButton.alpha = 1.0
+            self.cancelButton.alpha = 1.0
             self.imageView.alpha = 1.0
         }
+        
+        guard let index = selectedPhotoIndex else { return }
+        photo = photos[index]
+        guard let currentPhoto = photo else { return }
+        
+        let path = getDocumentsDirectory().appendingPathComponent(currentPhoto.image)
+        currentImage = UIImage(contentsOfFile: path.path)
+        
+        imageView.image = currentImage
+        nameLabel.text = currentPhoto.name
+        dateLabel.text = "Date: \(currentPhoto.date)"
+        
     }
     
 }

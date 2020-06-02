@@ -25,18 +25,6 @@ extension UIViewController {
     
 }
 
-//MARK: - UIView
-
-extension UIView {
-}
-
-
-//MARK: - UItableViewExtension
-
-extension UITableView {
-}
-
-
 //MARK: - UITableViewCell
 
 extension UITableViewCell {
@@ -66,8 +54,8 @@ extension UIButton {
         self.layer.shadowRadius = 8
         self.layer.shadowOpacity = 0.6
         self.layer.masksToBounds = false
-        //self.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
-        //self.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+        //self.widthAnchor.constraint(equalToConstant: 220.0).isActive = true
+        //self.heightAnchor.constraint(equalToConstant: 34.0).isActive = true
     }
 }
 
